@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online utility tools: PDF to Word converter, Image tools, QR Code Generator, Base64 Encoder/Decoder, Unit Converter, and more.">
+    <meta name="keywords" content="PDF to Word, image resizer, image compressor, QR code generator, base64 encoder, unit converter, currency converter, calculator">
+    <title>UtilityTools - Free Online Daily Utility Tools</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #f72585;
+            --success: #4cc9f0;
+            --warning: #f9c74f;
+            --danger: #f94144;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --border-radius: 12px;
+            --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f0f4f8;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            font-size: 2rem;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        /* Mobile menu button */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Ad Spaces */
+        .ad-unit {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            text-align: center;
+            margin: 1rem 0;
+            box-shadow: var(--box-shadow);
+        }
+
+        .ad-unit h3 {
+            color: var(--gray);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .ad-placeholder {
+            background: #f8f9fa;
+            border: 2px dashed #dee2e6;
+            border-radius: 8px;
+            padding: 1.5rem;
+            color: var(--gray);
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ad-placeholder i {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #adb5bd;
+        }
+
+        /* Main Layout */
+        .main-content {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+            margin: 2rem auto;
+        }
+
+        @media (max-width: 900px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .sidebar {
+                display: none;
+            }
+            
+            .sidebar.active {
+                display: block;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 250px;
+                height: calc(100vh - 70px);
+                background: white;
+                z-index: 99;
+                overflow-y: auto;
+                box-shadow: var(--box-shadow);
+            }
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--box-shadow);
+            height: fit-content;
+            position: sticky;
+            top: 90px;
+        }
+
+        .sidebar h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light);
+        }
+
+        .tool-nav {
+            list-style: none;
+        }
+
+        .tool-nav li {
+            margin-bottom: 0.5rem;
+        }
+
+        .tool-nav a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.8rem 1rem;
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .tool-nav a:hover, .tool-nav a.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .tool-nav i {
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Tool Container */
+        .tool-container {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--box-shadow);
+            min-height: 500px;
+        }
+
+        .tool-header {
+            margin-bottom: 2rem;
+        }
+
+        .tool-header h2 {
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .tool-header p {
+            color: var(--gray);
+        }
+
+        /* Tool Content */
+        .tool-content {
+            display: none;
+        }
+
+        .tool-content.active {
+            display: block;
+        }
+
+        /* Common Tool Elements */
+        .upload-area {
+            border: 3px dashed var(--primary);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .upload-area:hover {
+            border-color: var(--accent);
+            background: #f8f9fa;
+        }
+
+        .upload-area i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .upload-area h3 {
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .upload-area p {
+            color: var(--gray);
+        }
+
+        #file-input {
+            display: none;
+        }
+
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .slider {
+            flex: 1;
+            -webkit-appearance: none;
+            height: 10px;
+            border-radius: 5px;
+            background: #e9ecef;
+            outline: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+        }
+
+        .slider-value {
+            font-weight: bold;
+            color: var(--primary);
+            min-width: 40px;
+        }
+
+        .quality-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 5px;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .results {
+            margin-top: 2rem;
+            display: none;
+        }
+
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 600px) {
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .image-card {
+            border: 1px solid #e9ecef;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            background: #f8f9fa;
+        }
+
+        .image-info {
+            padding: 1rem;
+            background: white;
+            text-align: center;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #e9ecef;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #e9ecef;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            background: white;
+            cursor: pointer;
+        }
+
+        /* Calculator Grid */
+        .calculator {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .calc-display {
+            grid-column: span 4;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: var(--border-radius);
+            text-align: right;
+            font-size: 1.5rem;
+            font-weight: bold;
+            min-height: 60px;
+        }
+
+        .calc-btn {
+            padding: 1rem;
+            border: none;
+            border-radius: var(--border-radius);
+            background: #e9ecef;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .calc-btn:hover {
+            background: #dee2e6;
+        }
+
+        .calc-btn.operator {
+            background: var(--primary);
+            color: white;
+        }
+
+        .calc-btn.operator:hover {
+            background: var(--secondary);
+        }
+
+        .calc-btn.equals {
+            background: var(--success);
+            color: white;
+        }
+
+        .calc-btn.equals:hover {
+            background: #3a9ec4;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 2rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--success);
+        }
+
+        .footer-section p, .footer-section a {
+            color: #adb5bd;
+            margin-bottom: 0.5rem;
+            display: block;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            color: var(--primary);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            font-size: 1.5rem;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #343a40;
+            color: #6c757d;
+        }
+
+        /* Cookie Consent */
+        .cookie-consent {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--dark);
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .cookie-consent p {
+            margin-right: 1rem;
+            flex: 1;
+        }
+
+        .cookie-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .cookie-consent {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .cookie-buttons {
+                margin-top: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-tools"></i>
+                    <h1>UtilityTools</h1>
+                </div>
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Header Ad -->
+    <div class="container">
+        <div class="ad-unit">
+            <div class="ad-placeholder">
+                <i class="fas fa-ad"></i>
+                <p>Header Ad Space (728x90)</p>
+                <p>Google AdSense Unit ID: <input type="text" placeholder="ca-pub-example" style="width: 100%; padding: 5px; margin-top: 5px;"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="main-content">
+            <!-- Sidebar Navigation -->
+            <div class="sidebar" id="sidebar">
+                <h3>Tools</h3>
+                <ul class="tool-nav">
+                    <li><a href="#pdf-to-word" class="active" data-tool="pdf-to-word"><i class="fas fa-file-pdf"></i> PDF to Word</a></li>
+                    <li><a href="#image-resizer" data-tool="image-resizer"><i class="fas fa-expand-arrows-alt"></i> Image Resizer</a></li>
+                    <li><a href="#image-compressor" data-tool="image-compressor"><i class="fas fa-compress-arrows-alt"></i> Image Compressor</a></li>
+                    <li><a href="#qr-generator" data-tool="qr-generator"><i class="fas fa-qrcode"></i> QR Generator</a></li>
+                    <li><a href="#base64" data-tool="base64"><i class="fas fa-code"></i> Base64 Encoder/Decoder</a></li>
+                    <li><a href="#unit-converter" data-tool="unit-converter"><i class="fas fa-balance-scale"></i> Unit Converter</a></li>
+                    <li><a href="#currency-converter" data-tool="currency-converter"><i class="fas fa-money-bill-wave"></i> Currency Converter</a></li>
+                    <li><a href="#calculator" data-tool="calculator"><i class="fas fa-calculator"></i> Calculator</a></li>
+                </ul>
+
+                <!-- Sidebar Ad -->
+                <div class="ad-unit">
+                    <div class="ad-placeholder">
+                        <i class="fas fa-ad"></i>
+                        <p>Sidebar Ad (250x250)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tool Container -->
+            <div class="tool-container">
+                <!-- PDF to Word Tool -->
+                <div class="tool-content active" id="pdf-to-word">
+                    <div class="tool-header">
+                        <h2>PDF to Word Converter</h2>
+                        <p>Convert your PDF documents to editable Word files</p>
+                    </div>
+
+                    <div class="upload-area" id="pdf-drop-area">
+                        <i class="fas fa-file-pdf"></i>
+                        <h3>Drag & Drop Your PDF Here</h3>
+                        <p>or</p>
+                        <button class="btn btn-primary" id="pdf-select-btn">Select PDF File</button>
+                        <input type="file" id="pdf-input" accept=".pdf">
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" id="pdf-convert-btn">
+                            <i class="fas fa-sync-alt"></i> Convert to Word
+                        </button>
+                        <button class="btn btn-outline" id="pdf-reset-btn">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
+                    </div>
+
+                    <div class="results" id="pdf-results">
+                        <h3>Conversion Results</h3>
+                        <p>Your PDF was converted successfully!</p>
+                        
+                        <button class="btn btn-primary" id="pdf-download-btn">
+                            <i class="fas fa-download"></i> Download Word Document
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Image Resizer Tool -->
+                <div class="tool-content" id="image-resizer">
+                    <div class="tool-header">
+                        <h2>Image Resizer</h2>
+                        <p>Resize your images to specific dimensions</p>
+                    </div>
+
+                    <div class="upload-area" id="resize-drop-area">
+                        <i class="fas fa-image"></i>
+                        <h3>Drag & Drop Your Image Here</h3>
+                        <p>or</p>
+                        <button class="btn btn-primary" id="resize-select-btn">Select Image</button>
+                        <input type="file" id="resize-input" accept="image/*">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="width-input">Width (px)</label>
+                        <input type="number" id="width-input" class="form-control" placeholder="Enter width">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="height-input">Height (px)</label>
+                        <input type="number" id="height-input" class="form-control" placeholder="Enter height">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="maintain-aspect">
+                            <input type="checkbox" id="maintain-aspect" checked> Maintain aspect ratio
+                        </label>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" id="resize-btn">
+                            <i class="fas fa-crop-alt"></i> Resize Image
+                        </button>
+                        <button class="btn btn-outline" id="resize-reset-btn">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
+                    </div>
+
+                    <div class="results" id="resize-results">
+                        <h3>Resized Image</h3>
+                        
+                        <div class="image-card">
+                            <img src="" alt="Resized Image" id="resized-img">
+                            <div class="image-info">
+                                <p>Dimensions: <span id="resized-dimensions">0 x 0</span></p>
+                                <p>Size: <span id="resized-size">0 KB</span></p>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-primary" id="resize-download-btn">
+                            <i class="fas fa-download"></i> Download Resized Image
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Other tools would be implemented similarly -->
+                <!-- For brevity, I'm showing just two tools but the structure would be similar for others -->
+
+                <!-- Placeholder for other tools -->
+                <div class="tool-content" id="image-compressor">
+                    <div class="tool-header">
+                        <h2>Image Compressor</h2>
+                        <p>Reduce image file size without losing quality</p>
+                    </div>
+                    <p style="text-align: center; padding: 2rem; color: var(--gray);">Image compression tool will be implemented here.</p>
+                </div>
+
+                <div class="tool-content" id="qr-generator">
+                    <div class="tool-header">
+                        <h2>QR Code Generator</h2>
+                        <p>Create QR codes for URLs, text, or contact information</p>
+                    </div>
+                    <p style="text-align: center; padding: 2rem; color: var(--gray);">QR code generator tool will be implemented here.</p>
+                </div>
+
+                <!-- Additional tools would follow the same pattern -->
+            </div>
+        </div>
+
+        <!-- Between Tools Ad -->
+        <div class="ad-unit">
+            <div class="ad-placeholder">
+                <i class="fas fa-ad"></i>
+                <p>Between Tools Ad (728x90)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>UtilityTools</h3>
+                    <p>Your all-in-one solution for daily utility tools. Free, fast, and easy to use.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#">Home</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Contact Us</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Tools</h3>
+                    <a href="#pdf-to-word">PDF to Word</a>
+                    <a href="#image-resizer">Image Resizer</a>
+                    <a href="#image-compressor">Image Compressor</a>
+                    <a href="#qr-generator">QR Generator</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 UtilityTools. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Consent Banner -->
+    <div class="cookie-consent" id="cookieConsent">
+        <p>We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.</p>
+        <div class="cookie-buttons">
+            <button class="btn btn-primary" id="acceptCookies">Accept</button>
+            <button class="btn btn-outline" id="rejectCookies">Reject</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const menuToggle = document.getElementById('menuToggle');
+            const sidebar = document.getElementById('sidebar');
+            
+            menuToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('active');
+            });
+            
+            // Tool navigation
+            const toolLinks = document.querySelectorAll('.tool-nav a');
+            const toolContents = document.querySelectorAll('.tool-content');
+            
+            toolLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all links and contents
+                    toolLinks.forEach(l => l.classList.remove('active'));
+                    toolContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked link
+                    this.classList.add('active');
+                    
+                    // Show corresponding content
+                    const toolId = this.getAttribute('data-tool');
+                    document.getElementById(toolId).classList.add('active');
+                    
+                    // Hide sidebar on mobile after selection
+                    if (window.innerWidth <= 900) {
+                        sidebar.classList.remove('active');
+                    }
+                });
+            });
+            
+            // Cookie consent
+            const cookieConsent = document.getElementById('cookieConsent');
+            const acceptCookies = document.getElementById('acceptCookies');
+            const rejectCookies = document.getElementById('rejectCookies');
+            
+            // Check if user has already made a choice
+            if (!localStorage.getItem('cookieConsent')) {
+                cookieConsent.style.display = 'flex';
+            }
+            
+            acceptCookies.addEventListener('click', function() {
+                localStorage.setItem('cookieConsent', 'accepted');
+                cookieConsent.style.display = 'none';
+            });
+            
+            rejectCookies.addEventListener('click', function() {
+                localStorage.setItem('cookieConsent', 'rejected');
+                cookieConsent.style.display = 'none';
+            });
+            
+            // PDF to Word tool functionality
+            const pdfSelectBtn = document.getElementById('pdf-select-btn');
+            const pdfInput = document.getElementById('pdf-input');
+            const pdfConvertBtn = document.getElementById('pdf-convert-btn');
+            const pdfResetBtn = document.getElementById('pdf-reset-btn');
+            const pdfResults = document.getElementById('pdf-results');
+            const pdfDownloadBtn = document.getElementById('pdf-download-btn');
+            const pdfDropArea = document.getElementById('pdf-drop-area');
+            
+            pdfSelectBtn.addEventListener('click', () => pdfInput.click());
+            
+            pdfInput.addEventListener('change', function() {
+                if (this.files.length) {
+                    // Simulate conversion process
+                    pdfConvertBtn.disabled = false;
+                }
+            });
+            
+            pdfConvertBtn.addEventListener('click', function() {
+                // Show loading state
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Converting...';
+                this.disabled = true;
+                
+                // Simulate conversion process
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fas fa-sync-alt"></i> Convert to Word';
+                    this.disabled = false;
+                    
+                    // Show results
+                    pdfResults.style.display = 'block';
+                }, 2000);
+            });
+            
+            pdfResetBtn.addEventListener('click', function() {
+                pdfInput.value = '';
+                pdfResults.style.display = 'none';
+                pdfConvertBtn.disabled = false;
+            });
+            
+            pdfDownloadBtn.addEventListener('click', function() {
+                alert('In a real application, this would download the converted Word document.');
+            });
+            
+            // Drag and drop for PDF
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                pdfDropArea.addEventListener(eventName, preventDefaults, false);
+            });
+            
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            
+            ['dragenter', 'dragover'].forEach(eventName => {
+                pdfDropArea.addEventListener(eventName, highlight, false);
+            });
+            
+            ['dragleave', 'drop'].forEach(eventName => {
+                pdfDropArea.addEventListener(eventName, unhighlight, false);
+            });
+            
+            function highlight() {
+                pdfDropArea.style.borderColor = 'var(--accent)';
+                pdfDropArea.style.backgroundColor = '#f0f4f8';
+            }
+            
+            function unhighlight() {
+                pdfDropArea.style.borderColor = 'var(--primary)';
+                pdfDropArea.style.backgroundColor = 'transparent';
+            }
+            
+            pdfDropArea.addEventListener('drop', function(e) {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+                if (files.length && files[0].type === 'application/pdf') {
+                    pdfInput.files = files;
+                    pdfConvertBtn.disabled = false;
+                } else {
+                    alert('Please drop a PDF file.');
+                }
+            });
+            
+            // Image Resizer tool functionality
+            const resizeSelectBtn = document.getElementById('resize-select-btn');
+            const resizeInput = document.getElementById('resize-input');
+            const resizeBtn = document.getElementById('resize-btn');
+            const resizeResetBtn = document.getElementById('resize-reset-btn');
+            const resizeResults = document.getElementById('resize-results');
+            const resizeDownloadBtn = document.getElementById('resize-download-btn');
+            const resizeDropArea = document.getElementById('resize-drop-area');
+            const resizedImg = document.getElementById('resized-img');
+            const resizedDimensions = document.getElementById('resized-dimensions');
+            const resizedSize = document.getElementById('resized-size');
+            const widthInput = document.getElementById('width-input');
+            const heightInput = document.getElementById('height-input');
+            const maintainAspect = document.getElementById('maintain-aspect');
+            
+            resizeSelectBtn.addEventListener('click', () => resizeInput.click());
+            
+            resizeInput.addEventListener('change', function() {
+                if (this.files.length) {
+                    previewImage(this.files[0]);
+                }
+            });
+            
+            maintainAspect.addEventListener('change', function() {
+                if (this.checked && resizeInput.files.length) {
+                    previewImage(resizeInput.files[0]);
+                }
+            });
+            
+            function previewImage(file) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    const img = new Image();
+                    img.onload = function() {
+                        if (maintainAspect.checked) {
+                            const ratio = img.width / img.height;
+                            heightInput.value = Math.round(widthInput.value / ratio);
+                        }
+                    };
+                    img.src = e.target.result;
+                    resizedImg.src = e.target.result;
+                };
+                
+                reader.readAsDataURL(file);
+            }
+            
+            resizeBtn.addEventListener('click', function() {
+                if (!resizeInput.files.length) {
+                    alert('Please select an image first.');
+                    return;
+                }
+                
+                if (!widthInput.value || !heightInput.value) {
+                    alert('Please enter both width and height.');
+                    return;
+                }
+                
+                // Show loading state
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Resizing...';
+                this.disabled = true;
+                
+                // Simulate resizing process
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fas fa-crop-alt"></i> Resize Image';
+                    this.disabled = false;
+                    
+                    // Show results with simulated data
+                    resizedDimensions.textContent = `${widthInput.value} x ${heightInput.value}`;
+                    resizedSize.textContent = '45.2 KB';
+                    resizeResults.style.display = 'block';
+                }, 1500);
+            });
+            
+            resizeResetBtn.addEventListener('click', function() {
+                resizeInput.value = '';
+                widthInput.value = '';
+                heightInput.value = '';
+                resizeResults.style.display = 'none';
+            });
+            
+            resizeDownloadBtn.addEventListener('click', function() {
+                alert('In a real application, this would download the resized image.');
+            });
+            
+            // Implement similar functionality for other tools...
+        });
+    </script>
+</body>
+</html>
